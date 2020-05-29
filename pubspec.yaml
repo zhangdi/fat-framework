@@ -11,6 +11,23 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # 事件驱动
+  event_bus: ^1.1.0
+  # 状态管理
+  provider: ^4.0.0
+  # 设备信息
+  device_info: ^0.4.0
+  # 通知
+  flutter_local_notifications: ^1.4.0
+  # 偏好设置
+  shared_preferences: ^0.5.7
+  # 图片选择器
+  image_picker: ^0.6.6
+  # 图片缓存
+  cached_network_image: ^2.1.0
+  # 图标
+  flutter_icons: ^1.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

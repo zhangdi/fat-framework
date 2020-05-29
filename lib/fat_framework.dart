@@ -1,7 +1,41 @@
 library fat_framework;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+import 'dart:io';
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:event_bus/event_bus.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+part 'src/application.dart';
+part 'src/constants.dart';
+part 'src/form.dart';
+part 'src/formatter.dart';
+part 'src/keyboard.dart';
+part 'src/preference_manager.dart';
+part 'src/provider.dart';
+part 'src/provider_screen.dart';
+part 'src/router.dart';
+part 'src/screen.dart';
+part 'src/service.dart';
+part 'src/service_locator.dart';
+part 'src/stateful_screen.dart';
+part 'src/stateless_screen.dart';
+part 'src/ui/ball.dart';
+part 'src/ui/button.dart';
+part 'src/ui/cells.dart';
+part 'src/ui/circle_button.dart';
+part 'src/ui/clickable_field.dart';
+part 'src/ui/flat_icon.dart';
+part 'src/ui/form_model_field_cell.dart';
+part 'src/ui/grid_icon_button.dart';
+part 'src/ui/input_field.dart';
+part 'src/ui/list_sheet.dart';
+part 'src/ui/readonly_field.dart';
+part 'src/ui/space.dart';
+part 'src/ui/tag.dart';
+part 'src/ui/textarea_field.dart';
+part 'src/ui/uploader.dart';
