@@ -61,9 +61,11 @@ class FatApplication {
   }
 
   /// State 初始化
-  initializeState() async {
+  initializeState(BuildContext context) async {
+    _currentContext = context;
+
     if (_stateInitializeCallback != null) {
-      await _stateInitializeCallback(this);
+      await _stateInitializeCallback(this, context);
     }
   }
 
@@ -139,7 +141,7 @@ class _FatApplicationWrapperState extends State<FatApplicationWrapper> {
   /// 初始化
   initialize() async {
     // 初始应用
-    await widget.application.initializeState();
+    await widget.application.initializeState(context);
   }
 
   @override
