@@ -19,6 +19,8 @@ class FatApplication {
 
   static FatApplication _instance;
 
+  static FatApplication get instance => _instance;
+
   factory FatApplication() {
     if (_instance == null) {
       _instance = FatApplication._();
