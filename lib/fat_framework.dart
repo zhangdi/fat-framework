@@ -10,7 +10,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-part 'src/types.dart';
 part 'src/application.dart';
 part 'src/constants.dart';
 part 'src/form.dart';
@@ -25,6 +24,7 @@ part 'src/service.dart';
 part 'src/service_locator.dart';
 part 'src/stateful_screen.dart';
 part 'src/stateless_screen.dart';
+part 'src/types.dart';
 part 'src/ui/ball.dart';
 part 'src/ui/button.dart';
 part 'src/ui/cells.dart';

@@ -1,11 +1,11 @@
 part of fat_framework;
 
-abstract class ProviderScreen<T extends FatProvider> extends FatStatelessScreen {
+abstract class FatProviderScreen<T extends FatProvider> extends FatStatelessScreen {
   final T mProvider;
 
   /// 构造函数
   ///
-  ProviderScreen(T provider) : mProvider = provider;
+  FatProviderScreen(T provider) : mProvider = provider;
 
   @override
   Widget build(BuildContext context) {
