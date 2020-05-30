@@ -37,6 +37,14 @@ class FatApplication {
 
   bool get isProduct => bool.fromEnvironment("dart.vm.product");
 
+  ThemeData theme;
+
+  Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates;
+
+  InitializeCallback _initializeCallback;
+
+  List<ChangeNotifierProvider> providers = [];
+
   /// 初始化
   initialize() async {
     _serviceLocator = FatServiceLocator();
@@ -44,6 +52,16 @@ class FatApplication {
     _navigatorKey = GlobalKey();
 
     await _registerCoreServices();
+
+    if (_initializeCallback != null) {
+      await _initializeCallback(this);
+    }
+  }
+
+  /// 设置初始化回调
+  /// 必须在 [initialize] 之前调用
+  onInitialize(InitializeCallback callback) {
+    _initializeCallback = callback;
   }
 
   /// 核心服务
@@ -75,6 +93,53 @@ class FatApplication {
   }
 
   Widget run() {
-    return MaterialApp();
+    return MultiProvider(
+      providers: providers,
+      child: FatApplicationWrapper(application: this),
+    );
+  }
+}
+
+class FatApplicationWrapper extends StatefulWidget {
+  FatApplication application;
+
+  FatApplicationWrapper({
+    @required this.application,
+  }) : assert(application != null);
+
+  @override
+  _FatApplicationWrapperState createState() => _FatApplicationWrapperState();
+}
+
+class _FatApplicationWrapperState extends State<FatApplicationWrapper> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      initialize();
+    });
+  }
+
+  /// 初始化
+  initialize() async {
+    // 初始应用
+    await widget.application.initialize();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: widget.application.theme,
+      onGenerateRoute: widget.application.router.onGenerateRoute,
+      navigatorKey: widget.application.navigatorKey,
+      navigatorObservers: widget.application.router.getNavigatorObservers(),
+      localizationsDelegates: widget.application.localizationsDelegates,
+    );
   }
 }
