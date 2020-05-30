@@ -18,6 +18,7 @@ part 'src/form.dart';
 part 'src/formatter.dart';
 part 'src/http_service.dart';
 part 'src/keyboard.dart';
+part 'src/output_service.dart';
 part 'src/preference_manager.dart';
 part 'src/provider.dart';
 part 'src/provider_screen.dart';

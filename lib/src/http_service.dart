@@ -7,6 +7,11 @@ class FatHttpStatus {
 
 class FatHttpService extends FatService {
   Dio _client;
+  FatOutputService output;
+
+  FatHttpService({
+    @required this.output,
+  }) : assert(output != null);
 
   @override
   initialize() {
@@ -16,6 +21,8 @@ class FatHttpService extends FatService {
       responseType: responseType,
       baseUrl: _baseUrl,
     ));
+
+    _client.interceptors.add(debugInterceptor());
   }
 
   ResponseType _responseType = ResponseType.json;
@@ -64,6 +71,44 @@ class FatHttpService extends FatService {
   /// 添加头信息
   void addHeaders(Map<String, dynamic> headers) {
     _client.options.headers.addAll(headers);
+  }
+
+  /// 调试拦截器
+  Interceptor debugInterceptor() {
+    return InterceptorsWrapper(
+      onRequest: (options) {
+        List<String> lines = [];
+
+        lines.add('${options.method} ${options.path}');
+        lines.add('Headers: ${options.headers}');
+        lines.add('Query Parameters: ${options.queryParameters}');
+
+        if (options.data != null) {
+          lines.add('Data: ${options.data}');
+        }
+
+        output.print(lines.join('\n'), withTimestamp: false);
+
+        return options;
+      },
+      onResponse: (response) {
+        List<String> lines = [];
+
+        lines.add('Response Status Code: ${response.statusCode}');
+        lines.add('Response Status Message: ${response.statusMessage}');
+        lines.add('Response Headers: ${response.headers}');
+        lines.add('Response Data: ${response.data}');
+
+        output.print(lines.join('\n'), withTimestamp: false);
+
+        return response;
+      },
+      onError: (error) {
+        output.print('Dio Error: ${error.toString()}', withTimestamp: false);
+
+        return error;
+      },
+    );
   }
 
   /// GET 请求
