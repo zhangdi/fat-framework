@@ -85,10 +85,15 @@ class _FatLoadingDialogState extends State<FatLoadingDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.black.withOpacity(0.1),
       body: Center(
         child: Container(
+          constraints: BoxConstraints(
+            maxWidth: screenSize.width * 0.6,
+            maxHeight: screenSize.height * 0.6,
+          ),
           padding: EdgeInsets.symmetric(horizontal: 32, vertical: 24),
           decoration: BoxDecoration(
             color: Colors.black.withOpacity(0.6),
@@ -114,6 +119,8 @@ class _FatLoadingDialogState extends State<FatLoadingDialog> {
               Text(
                 _text ?? '',
                 style: TextStyle(color: Colors.white),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               )
             ],
           ),
