@@ -43,6 +43,8 @@ class FatApplication {
 
   InitializeCallback _initializeCallback;
 
+  StateInitializeCallback _stateInitializeCallback;
+
   List<ChangeNotifierProvider> providers = [];
 
   /// 初始化
@@ -58,10 +60,23 @@ class FatApplication {
     }
   }
 
+  /// State 初始化
+  initializeState() async {
+    if (_stateInitializeCallback != null) {
+      await _stateInitializeCallback(this);
+    }
+  }
+
   /// 设置初始化回调
   /// 必须在 [initialize] 之前调用
   onInitialize(InitializeCallback callback) {
     _initializeCallback = callback;
+  }
+
+  /// 设置 State 初始化回调
+  /// 必须在 [initialize] 之前调用
+  onStateInitialize(StateInitializeCallback callback) {
+    _stateInitializeCallback = callback;
   }
 
   /// 核心服务
@@ -124,7 +139,7 @@ class _FatApplicationWrapperState extends State<FatApplicationWrapper> {
   /// 初始化
   initialize() async {
     // 初始应用
-    await widget.application.initialize();
+    await widget.application.initializeState();
   }
 
   @override
