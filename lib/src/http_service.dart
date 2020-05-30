@@ -79,6 +79,7 @@ class FatHttpService extends FatService {
       onRequest: (options) {
         List<String> lines = [];
 
+        lines.add('========= Http Request  ==========');
         lines.add('${options.method} ${options.path}');
         lines.add('Headers: ${options.headers}');
         lines.add('Query Parameters: ${options.queryParameters}');
@@ -87,6 +88,7 @@ class FatHttpService extends FatService {
           lines.add('Data: ${options.data}');
         }
 
+        lines.add('========= Http Request  ==========');
         output.print(lines.join('\n'), withTimestamp: false);
 
         return options;
@@ -94,10 +96,11 @@ class FatHttpService extends FatService {
       onResponse: (response) {
         List<String> lines = [];
 
+        lines.add('========= Http Response  ==========');
         lines.add('Response Status Code: ${response.statusCode}');
         lines.add('Response Status Message: ${response.statusMessage}');
-        lines.add('Response Headers: ${response.headers}');
         lines.add('Response Data: ${response.data}');
+        lines.add('========= Http Request  ==========');
 
         output.print(lines.join('\n'), withTimestamp: false);
 
