@@ -4,6 +4,7 @@ const SERVICE_ROUTER = 'fat.application.router';
 const SERVICE_NAVIGATOR_KEY = 'fat.application.navigatorKey';
 const SERVICE_PREFERENCES = 'fat.application.preferences';
 const SERVICE_IDENTITY = 'fat.application.identity';
+const SERVICE_TOAST = 'fat.application.toast';
 
 class FatApplication {
   FatServiceLocator _serviceLocator;
@@ -34,6 +35,8 @@ class FatApplication {
   FatRouter get router => getService(SERVICE_ROUTER);
 
   FatPreferenceManager get preferences => getService(SERVICE_PREFERENCES);
+
+  FatToastManager get toast => getService(SERVICE_TOAST);
 
   bool get isProduct => bool.fromEnvironment("dart.vm.product");
 
@@ -92,6 +95,11 @@ class FatApplication {
     FatPreferenceManager _prefs = FatPreferenceManager();
     await _prefs.initialize();
     await registerService(SERVICE_PREFERENCES, _prefs);
+
+    // Toast
+    FatToastManager _toast = FatToastManager();
+    await _toast.initialize();
+    await registerService(SERVICE_TOAST, _toast);
   }
 
   /// 注册服务
