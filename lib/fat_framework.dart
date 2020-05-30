@@ -10,11 +10,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
+import 'package:dio/dio.dart';
 
 part 'src/application.dart';
 part 'src/constants.dart';
 part 'src/form.dart';
 part 'src/formatter.dart';
+part 'src/http_service.dart';
 part 'src/keyboard.dart';
 part 'src/preference_manager.dart';
 part 'src/provider.dart';

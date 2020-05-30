@@ -1,6 +1,6 @@
 name: fat_framework
 description: A Fat Framework for Flutter.
-version: 0.0.6
+version: 0.0.7
 author:
 homepage: https://gtihub.com/zhangdi/fat-framework
 
@@ -29,6 +29,8 @@ dependencies:
   flutter_icons: ^1.1.0
   # Toast 消息
   toast: ^0.1.5
+  # Http 请求
+  dio: ^3.0.9
 
 dev_dependencies:
   flutter_test:
