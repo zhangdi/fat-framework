@@ -9,6 +9,8 @@ abstract class FatProviderScreen<T extends FatProvider> extends FatStatelessScre
 
   @override
   Widget build(BuildContext context) {
+    FatApplication.instance?.currentContext = context;
+
     return MultiProvider(
       providers: [ChangeNotifierProvider.value(value: mProvider)],
       child: buildScreen(context),

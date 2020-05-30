@@ -15,4 +15,13 @@ abstract class FatScreenState<T extends FatStatefulScreen> extends State<T> impl
   Widget build(BuildContext context) {
     return buildScreen(context);
   }
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      FatApplication.instance?.currentContext = context;
+    });
+  }
 }
