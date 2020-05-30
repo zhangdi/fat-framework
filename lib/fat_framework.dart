@@ -15,6 +15,7 @@ import 'package:toast/toast.dart';
 part 'src/application.dart';
 part 'src/constants.dart';
 part 'src/form.dart';
+part 'src/form_model.dart';
 part 'src/formatter.dart';
 part 'src/http_service.dart';
 part 'src/keyboard.dart';
