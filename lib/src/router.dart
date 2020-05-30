@@ -111,14 +111,56 @@ class FatRouter extends FatService {
 
   ///
   void pop<T extends Object>([T result]) {
-    navigatorKey.currentState.pop(result);
+    navigatorKey.currentState?.pop(result);
   }
 
   ///
-  Future<T> navigateTo<T extends Object>(String path, {Map<String, dynamic> arguments}) async {
+  void popUntil(RoutePredicate predicate) {
+    navigatorKey.currentState?.popUntil(predicate);
+  }
+
+  ///
+  Future<T> popAndPushNamed<T extends Object, TO extends Object>(
+    String routeName, {
+    TO result,
+    Map<String, dynamic> arguments,
+  }) {
+    final _arguments = FatRouteArguments(arguments);
+
+    if (_beforePush(routeName, _arguments)) {
+      return navigatorKey.currentState?.popAndPushNamed(routeName, result: result, arguments: _arguments);
+    }
+  }
+
+  ///
+  Future<T> push<T extends Object>(String routeName, {Map<String, dynamic> arguments}) async {
+    final _arguments = FatRouteArguments(arguments);
+    if (_beforePush(routeName, _arguments)) {
+      return await navigatorKey.currentState?.pushNamed<T>(routeName, arguments: _arguments);
+    }
+  }
+
+  ///
+  Future<T> pushAndRemoveUntil<T extends Object>(
+    String path,
+    RoutePredicate predicate, {
+    Map<String, dynamic> arguments,
+  }) async {
     final _arguments = FatRouteArguments(arguments);
     if (_beforePush(path, _arguments)) {
-      return await navigatorKey.currentState?.pushNamed<T>(path, arguments: _arguments);
+      return await navigatorKey.currentState?.pushNamedAndRemoveUntil(path, predicate, arguments: _arguments);
+    }
+  }
+
+  Future<T> pushReplacement<T extends Object, TO extends Object>(
+    String routeName, {
+    TO result,
+    Map<String, dynamic> arguments,
+  }) {
+    final _arguments = FatRouteArguments(arguments);
+
+    if (_beforePush(routeName, _arguments)) {
+      return navigatorKey.currentState?.pushReplacementNamed(routeName, result: result, arguments: arguments);
     }
   }
 
