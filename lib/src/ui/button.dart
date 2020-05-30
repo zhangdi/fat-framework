@@ -29,7 +29,6 @@ enum FatButtonSize {
 final Map<FatButtonType, Color> kFatButtonColors = {
   FatButtonType.light: Colors.grey[300],
   FatButtonType.dark: Colors.grey[800],
-  FatButtonType.primary: Colors.blue,
   FatButtonType.success: Colors.green,
   FatButtonType.warning: Colors.orange,
   FatButtonType.danger: Colors.red,
@@ -47,7 +46,6 @@ final Map<FatButtonType, Color> kFatButtonTextColors = {
 final Map<FatButtonType, Color> kFatOutlineButtonTextColors = {
   FatButtonType.light: Colors.black,
   FatButtonType.dark: Colors.black,
-  FatButtonType.primary: Colors.blue[700],
   FatButtonType.success: Colors.green[700],
   FatButtonType.warning: Colors.orange[700],
   FatButtonType.danger: Colors.red[700],
@@ -127,7 +125,7 @@ class FatButtonState extends State<FatButton> {
 
   @override
   Widget build(BuildContext context) {
-    Color backgroundColor = kFatButtonColors[widget.type];
+    Color backgroundColor = widget.type == FatButtonType.primary ? Theme.of(context).primaryColor : kFatButtonColors[widget.type];
     Color textColor = kFatButtonTextColors[widget.type];
     double textSize = kFatButtonSizes[widget.size];
     BorderRadius borderRadius;
@@ -142,7 +140,7 @@ class FatButtonState extends State<FatButton> {
 
     if (widget.outline) {
       backgroundColor = backgroundColor.withOpacity(0.2);
-      textColor = kFatOutlineButtonTextColors[widget.type];
+      textColor = widget.type == FatButtonType.primary ? Theme.of(context).primaryColor : kFatOutlineButtonTextColors[widget.type];
       border = Border.all(color: kFatButtonColors[widget.type], width: 0.6);
     }
 
