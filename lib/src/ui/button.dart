@@ -141,7 +141,7 @@ class FatButtonState extends State<FatButton> {
     if (widget.outline) {
       backgroundColor = backgroundColor.withOpacity(0.2);
       textColor = widget.type == FatButtonType.primary ? Theme.of(context).primaryColor : kFatOutlineButtonTextColors[widget.type];
-      border = Border.all(color: kFatButtonColors[widget.type], width: 0.6);
+      border = Border.all(color: widget.type == FatButtonType.primary ? Theme.of(context).primaryColor : kFatButtonColors[widget.type], width: 0.6);
     }
 
     Widget content = widget.child;
