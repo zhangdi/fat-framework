@@ -53,6 +53,14 @@ class FatApplication {
 
   List<ChangeNotifierProvider> providers = [];
 
+  bool _debug = false;
+
+  bool get debug => _debug;
+
+  set debug(bool value) {
+    _debug = value;
+  }
+
   /// 初始化
   initialize() async {
     _serviceLocator = FatServiceLocator();

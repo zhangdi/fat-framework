@@ -100,9 +100,9 @@ class FatHttpService extends FatService {
   }
 
   dynamic _handleResponse(Response resp) {
-    if(_responseHandler==null){
+    if (_responseHandler == null) {
       return resp;
-    }else{
+    } else {
       return _responseHandler(resp);
     }
   }
