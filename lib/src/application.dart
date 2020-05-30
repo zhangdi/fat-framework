@@ -7,6 +7,7 @@ const SERVICE_IDENTITY = 'fat.application.identity';
 const SERVICE_TOAST = 'fat.application.toast';
 const SERVICE_HTTP = 'fat.application.http';
 const SERVICE_OUTPUT = 'fat.application.output';
+const SERVICE_LOADING = 'fat.application.loading';
 
 class FatApplication {
   FatServiceLocator _serviceLocator;
@@ -45,6 +46,8 @@ class FatApplication {
   FatHttpService get http => getService(SERVICE_HTTP);
 
   FatOutputService get output => getService(SERVICE_OUTPUT);
+
+  FatLoadingService get loading => getService(SERVICE_LOADING);
 
   bool get isProduct => bool.fromEnvironment("dart.vm.product");
 
@@ -126,6 +129,11 @@ class FatApplication {
     FatHttpService _http = FatHttpService(output: _output);
     await _http.initialize();
     await registerService(SERVICE_HTTP, _http);
+
+    // Loading
+    FatLoadingService _loading = FatLoadingService();
+    await _loading.initialize();
+    await registerService(SERVICE_LOADING, _loading);
   }
 
   /// 注册服务
