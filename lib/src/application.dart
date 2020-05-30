@@ -141,6 +141,11 @@ class FatApplication {
     return _eventBus.on<T>();
   }
 
+  /// Fires a new event on the event bus with the specified [event].
+  void fire(event) {
+    _eventBus.fire(event);
+  }
+
   Widget run() {
     return MultiProvider(
       providers: providers,
