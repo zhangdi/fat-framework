@@ -34,4 +34,8 @@ class FatPreferenceManager extends FatService {
   String getString(String key) {
     return _prefs.getString(key);
   }
+
+  Future<bool> remove(String key) {
+    return _prefs.remove(key);
+  }
 }
