@@ -33,6 +33,7 @@ class FatCell extends StatelessWidget {
   final Widget value;
   final Widget desc;
   final VoidCallback onPressed;
+  final VoidCallback onLongPressed;
   final Color color;
   final Alignment alignment;
 
@@ -40,6 +41,7 @@ class FatCell extends StatelessWidget {
     @required this.title,
     this.value,
     this.onPressed,
+    this.onLongPressed,
     this.desc,
     this.prefix,
     this.suffix,
@@ -62,6 +64,7 @@ class FatCell extends StatelessWidget {
       color: color,
       child: InkWell(
         onTap: onPressed,
+        onLongPress: onLongPressed,
         child: Container(
           constraints: BoxConstraints(
             minHeight: 48,
