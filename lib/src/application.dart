@@ -36,6 +36,10 @@ class FatApplication {
     _currentContext = value;
   }
 
+  PackageInfo _packageInfo;
+
+  PackageInfo get packageInfo => _packageInfo;
+
   GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
 
   FatRouter get router => getService(SERVICE_ROUTER);
@@ -77,6 +81,7 @@ class FatApplication {
     _serviceLocator = FatServiceLocator();
     _eventBus = EventBus();
     _navigatorKey = GlobalKey();
+    _packageInfo = await PackageInfo.fromPlatform();
 
     await _registerCoreServices();
 
