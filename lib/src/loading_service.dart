@@ -45,6 +45,7 @@ class FatLoadingService extends FatService {
     assert(context != null);
 
     if (_visible) {
+      _visible = false;
       Navigator.of(context, rootNavigator: true).pop();
     }
   }
