@@ -7,6 +7,7 @@ class FatInputField extends StatelessWidget {
   final VoidCallback onEditingComplete;
   final ValueChanged<String> onChanged;
   final TextInputAction textInputAction;
+  final TextInputType keyboardType;
   final String errorText;
   final FormFieldValidator<String> validator;
   final Widget prefix;
@@ -22,6 +23,7 @@ class FatInputField extends StatelessWidget {
     this.onEditingComplete,
     this.onChanged,
     this.textInputAction,
+    this.keyboardType,
     this.validator,
     this.prefix,
     this.suffix,
@@ -72,6 +74,7 @@ class FatInputField extends StatelessWidget {
         onEditingComplete: onEditingComplete,
         onChanged: onChanged,
         textInputAction: textInputAction,
+        keyboardType: keyboardType,
         validator: validator,
         obscureText: obscureText,
         decoration: InputDecoration(

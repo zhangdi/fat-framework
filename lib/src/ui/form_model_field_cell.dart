@@ -89,6 +89,7 @@ class _FatFormModelFieldCellState extends State<FatFormModelFieldCell> {
       textInputAction: widget.field.textInputAction,
       errorText: widget.field.errorText,
       suffix: widget.field.suffix,
+      keyboardType: widget.field.keyboardType,
       onChanged: (String val) {
         widget.field.value = val;
       },
@@ -111,6 +112,7 @@ class _FatFormModelFieldCellState extends State<FatFormModelFieldCell> {
       textInputAction: widget.field.textInputAction,
       errorText: widget.field.errorText,
       suffix: widget.field.suffix,
+      keyboardType: widget.field.keyboardType,
       obscureText: true,
       onChanged: (String val) {
         widget.field.value = val;
