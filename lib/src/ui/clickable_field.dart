@@ -53,6 +53,10 @@ class FatClickableField<T> extends StatelessWidget {
         onTap: onClick,
         child: Container(
           width: double.infinity,
+          constraints: BoxConstraints(
+            minHeight: 48,
+          ),
+          alignment: Alignment.centerLeft,
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,

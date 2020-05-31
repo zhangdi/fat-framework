@@ -63,6 +63,10 @@ class FatCell extends StatelessWidget {
       child: InkWell(
         onTap: onPressed,
         child: Container(
+          constraints: BoxConstraints(
+            minHeight: 48,
+          ),
+          alignment: Alignment.centerLeft,
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,

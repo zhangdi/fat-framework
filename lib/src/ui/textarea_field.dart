@@ -38,6 +38,10 @@ class FatTextareaField extends StatelessWidget {
 
     return Container(
       width: double.infinity,
+      constraints: BoxConstraints(
+        minHeight: 48,
+      ),
+      alignment: Alignment.centerLeft,
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: Colors.white,
