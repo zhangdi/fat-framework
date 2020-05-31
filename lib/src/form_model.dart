@@ -54,6 +54,12 @@ class FatFormModel {
     }
   }
 
+  void reset() {
+    for (var value in _fields) {
+      value.value = null;
+    }
+  }
+
   void setFields(List<FatFormModelField> fields) {
     fields.forEach((field) {
       setField(field);

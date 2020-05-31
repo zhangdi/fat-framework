@@ -21,6 +21,7 @@ abstract class FatFormState<T extends FatForm> extends State<T> {
   /// 初始化 FormModel
   void initFormModel();
 
+  /// 验证
   bool validate() {
     final rs = mFormModel.validate();
     setState(() {});
@@ -28,7 +29,15 @@ abstract class FatFormState<T extends FatForm> extends State<T> {
     return rs;
   }
 
+  /// 保存
   void save() {
     mFormModel.save();
+  }
+
+  /// 重置
+  void reset() {
+    setState(() {
+      mFormModel.reset();
+    });
   }
 }

@@ -11,6 +11,8 @@ abstract class FatStatefulScreen extends StatefulWidget {
 }
 
 abstract class FatScreenState<T extends FatStatefulScreen> extends State<T> implements FatScreen {
+  FatApplication application = FatApplication.instance;
+
   @override
   Widget build(BuildContext context) {
     return buildScreen(context);
@@ -21,7 +23,7 @@ abstract class FatScreenState<T extends FatStatefulScreen> extends State<T> impl
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      FatApplication.instance?.currentContext = context;
+      application.currentContext = context;
     });
   }
 }
