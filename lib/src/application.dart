@@ -62,6 +62,8 @@ class FatApplication {
 
   Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates;
 
+  Iterable<Locale> supportedLocales;
+
   InitializeCallback _initializeCallback;
 
   StateInitializeCallback _stateInitializeCallback;
@@ -217,6 +219,7 @@ class _FatApplicationWrapperState extends State<FatApplicationWrapper> {
       navigatorKey: widget.application.navigatorKey,
       navigatorObservers: widget.application.router.getNavigatorObservers(),
       localizationsDelegates: widget.application.localizationsDelegates,
+      supportedLocales: widget.application.supportedLocales,
     );
   }
 }
