@@ -15,6 +15,7 @@ class FatApplication {
   FatServiceLocator _serviceLocator;
   EventBus _eventBus;
   GlobalKey<NavigatorState> _navigatorKey;
+  GlobalKey<FatKeyboardContainerState> _keyboardContainerKey = GlobalKey();
 
   BuildContext _currentContext;
 
@@ -92,6 +93,8 @@ class FatApplication {
     _packageInfo = await PackageInfo.fromPlatform();
 
     await _registerCoreServices();
+
+    await _registerCoreEvents();
 
     if (_initializeCallback != null) {
       await _initializeCallback(this);
@@ -178,6 +181,20 @@ class FatApplication {
     );
   }
 
+  /// 注册核心事件
+  _registerCoreEvents() {
+    _eventBus.on<FatRequestShowKeyboardEvent>().listen((event) {
+      _keyboardContainerKey.currentState.show(
+        keyboard: event.keyboard,
+        controller: event.controller,
+      );
+    });
+
+    _eventBus.on<FatRequestHideKeyboardEvent>().listen((event) {
+      _keyboardContainerKey.currentState.hide();
+    });
+  }
+
   /// 注册服务
   registerService<T extends FatService>(String name, T service) {
     _serviceLocator.registerSingleton(name, service);
@@ -199,9 +216,12 @@ class FatApplication {
   }
 
   Widget run() {
-    return MultiProvider(
-      providers: providers,
-      child: FatApplicationWrapper(application: this),
+    return FatKeyboardContainer(
+      key: _keyboardContainerKey,
+      child: MultiProvider(
+        providers: providers,
+        child: FatApplicationWrapper(application: this),
+      ),
     );
   }
 }
