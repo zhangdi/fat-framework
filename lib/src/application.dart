@@ -9,6 +9,7 @@ const SERVICE_HTTP = 'fat.application.http';
 const SERVICE_OUTPUT = 'fat.application.output';
 const SERVICE_LOADING = 'fat.application.loading';
 const SERVICE_UPGRADER = 'fat.application.upgrader';
+const SERVICE_KEYBOARD = 'fat.application.keyboard';
 
 class FatApplication {
   FatServiceLocator _serviceLocator;
@@ -52,9 +53,14 @@ class FatApplication {
 
   FatOutputService get output => getService(SERVICE_OUTPUT);
 
+  /// Loading
   FatLoadingService get loading => getService(SERVICE_LOADING);
 
+  /// 升级管理
   FatUpgradeService get upgrader => getService(SERVICE_UPGRADER);
+
+  /// 键盘管理
+  FatKeyboardManager get keyboard => getService(SERVICE_KEYBOARD);
 
   bool get isProduct => bool.fromEnvironment("dart.vm.product");
 
@@ -149,6 +155,27 @@ class FatApplication {
     FatUpgradeService _upgrader = FatUpgradeService();
     await _upgrader.initialize();
     await registerService(SERVICE_UPGRADER, _upgrader);
+
+    // Keyboard
+    FatKeyboardManager _keyboard = FatKeyboardManager(eventBus: _eventBus);
+    await _keyboard.initialize();
+    await registerService(SERVICE_KEYBOARD, _keyboard);
+    // 添加金额键盘
+    await _keyboard.addKeyboard(
+      inputType: FatMoneyKeyboard.inputType,
+      keyboard: FatKeyboard(
+        heightGetter: (context) {
+          return 240;
+        },
+        builder: (context, controller) {
+          return FatMoneyKeyboard(
+            height: 240,
+            controller: controller,
+            keyboardManager: _keyboard,
+          );
+        },
+      ),
+    );
   }
 
   /// 注册服务

@@ -1,11 +1,14 @@
 library fat_framework;
 
+import 'dart:async';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:package_info/package_info.dart';
@@ -21,6 +24,11 @@ part 'src/form_model.dart';
 part 'src/formatter.dart';
 part 'src/http_service.dart';
 part 'src/keyboard.dart';
+part 'src/keyboards/keyboard_container.dart';
+part 'src/keyboards/keyboard_controller.dart';
+part 'src/keyboards/keyboard_events.dart';
+part 'src/keyboards/keyboard_manager.dart';
+part 'src/keyboards/money_keyboard.dart';
 part 'src/loading_service.dart';
 part 'src/output_service.dart';
 part 'src/preference_manager.dart';
