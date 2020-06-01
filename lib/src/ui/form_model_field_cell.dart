@@ -14,19 +14,19 @@ class _FatFormModelFieldCellState extends State<FatFormModelFieldCell> {
   @override
   Widget build(BuildContext context) {
     switch (widget.field.type) {
-      case FatFormModelFiledType.input:
+      case FatFormModelFieldType.input:
         return _buildInputField(context);
         break;
-      case FatFormModelFiledType.picker:
+      case FatFormModelFieldType.picker:
         return _buildPicker(context);
         break;
-      case FatFormModelFiledType.textarea:
+      case FatFormModelFieldType.textarea:
         return _buildTextareaField(context);
         break;
-      case FatFormModelFiledType.readonly:
+      case FatFormModelFieldType.readonly:
         return _buildReadonlyField(context);
         break;
-      case FatFormModelFiledType.password:
+      case FatFormModelFieldType.password:
         return _buildPasswordField(context);
         break;
     }

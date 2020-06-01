@@ -1,11 +1,16 @@
 part of fat_framework;
 
-enum FatFormModelFiledType {
-  input,
-  picker,
-  textarea,
-  readonly,
-  password,
+class FatFormModelFieldType {
+  final String name;
+
+  const FatFormModelFieldType._(this.name);
+
+  static const FatFormModelFieldType input = FatFormModelFieldType._('input');
+  static const FatFormModelFieldType picker = FatFormModelFieldType._('picker');
+  static const FatFormModelFieldType textarea = FatFormModelFieldType._('textarea');
+  static const FatFormModelFieldType readonly = FatFormModelFieldType._('readonly');
+  static const FatFormModelFieldType password = FatFormModelFieldType._('password');
+  static const FatFormModelFieldType money = FatFormModelFieldType._('money');
 }
 
 typedef FatFormModelFieldValidator<T> = String Function(T val);
@@ -20,6 +25,7 @@ class FatFormModel {
   FatFormModel(List<FatFormModelField> fields) {
     this._fields = fields;
   }
+
   FatFormModelField getField<T>(String name) {
     int i = _fields.indexWhere((FatFormModelField field) => field.name == name);
     if (i == -1) {
@@ -72,7 +78,7 @@ class FatFormModelField<T> {
   String label;
   String placeholder;
   bool enabled;
-  FatFormModelFiledType type;
+  FatFormModelFieldType type;
   VoidCallback onClick;
   FatFormModelFieldValidator<T> validator;
   FatFormModelFieldSetter<T> onSaved;
@@ -87,7 +93,7 @@ class FatFormModelField<T> {
   FatFormModelField({
     @required this.name,
     @required this.label,
-    this.type = FatFormModelFiledType.input,
+    this.type = FatFormModelFieldType.input,
     this.value,
     this.placeholder,
     this.enabled = true,
@@ -99,7 +105,7 @@ class FatFormModelField<T> {
     this.onEditingComplete,
     this.suffix,
   }) {
-    if (this.onEditingComplete == null && type == FatFormModelFiledType.input) {
+    if (this.onEditingComplete == null && type == FatFormModelFieldType.input) {
       onEditingComplete = (BuildContext context) {
         FocusScope.of(context).nextFocus();
       };
