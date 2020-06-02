@@ -134,6 +134,29 @@ class FatHttpService extends FatService {
     return _handleResponse(resp);
   }
 
+  /// PUT 请求
+  Future<T> put<T>(
+    String path, {
+    data,
+    Map<String, dynamic> params,
+    Options options,
+    CancelToken cancelToken,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    final resp = await _client.put(
+      path,
+      queryParameters: params,
+      options: options,
+      data: data,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    return _handleResponse(resp);
+  }
+
   /// DELETE 请求
   Future<T> delete<T>(
     String path, {
