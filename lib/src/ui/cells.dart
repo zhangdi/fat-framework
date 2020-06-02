@@ -52,7 +52,7 @@ class FatCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    TextStyle titleStyle = theme.textTheme.subtitle2;
+    TextStyle titleStyle = theme.textTheme.subtitle1;
     TextStyle valueStyle = theme.textTheme.bodyText2.copyWith(color: Colors.grey);
 
     Widget titleWidget = DefaultTextStyle(
