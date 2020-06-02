@@ -53,7 +53,6 @@ class FatTag extends StatelessWidget {
 
     return Container(
       padding: padding,
-      alignment: Alignment.center,
       decoration: BoxDecoration(
         color: kFatTagBackgroundColors[type],
         borderRadius: borderRadius,
