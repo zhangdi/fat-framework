@@ -24,6 +24,11 @@ abstract class FatScreenState<T extends FatStatefulScreen> extends State<T> impl
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       application.currentContext = context;
+
+      onPostFirstFrameCallback(timeStamp);
     });
   }
+
+  ///
+  void onPostFirstFrameCallback(Duration timeStamp) {}
 }
