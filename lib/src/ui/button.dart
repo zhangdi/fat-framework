@@ -129,7 +129,7 @@ class FatButtonState extends State<FatButton> {
     Color textColor = kFatButtonTextColors[widget.type];
     double textSize = kFatButtonSizes[widget.size];
     BorderRadius borderRadius;
-    Border border;
+    BorderSide borderSide;
     EdgeInsets padding = kFatButtonPaddings[widget.size];
 
     if (widget.shape == FatButtonShape.round) {
@@ -141,7 +141,7 @@ class FatButtonState extends State<FatButton> {
     if (widget.outline) {
       backgroundColor = backgroundColor.withOpacity(0.2);
       textColor = widget.type == FatButtonType.primary ? Theme.of(context).primaryColor : kFatOutlineButtonTextColors[widget.type];
-      border = Border.all(color: widget.type == FatButtonType.primary ? Theme.of(context).primaryColor : kFatButtonColors[widget.type], width: 0.6);
+      borderSide = BorderSide(color: widget.type == FatButtonType.primary ? Theme.of(context).primaryColor : kFatButtonColors[widget.type], width: 0.6);
     }
 
     Widget content = widget.child;
@@ -166,73 +166,15 @@ class FatButtonState extends State<FatButton> {
       );
     }
 
-    return FatRawButton(
-      child: content,
-      backgroundColor: _loading || !widget.enabled ? backgroundColor.withOpacity(0.75) : backgroundColor,
-      textColor: textColor,
-      textSize: textSize,
-      borderRadius: borderRadius,
-      border: border,
+    return RawMaterialButton(
+      constraints: BoxConstraints(minWidth: 0, minHeight: 0),
       padding: padding,
-      onPressed: _loading || !widget.enabled ? null : widget.onPressed,
-      onLongPressed: _loading || !widget.enabled ? null : widget.onLongPressed,
-    );
-  }
-}
-
-class FatRawButton extends StatelessWidget {
-  final Widget child;
-  final Color backgroundColor;
-  final Color textColor;
-  final double textSize;
-  final BorderRadius borderRadius;
-  final VoidCallback onPressed;
-  final VoidCallback onLongPressed;
-  final Border border;
-  final EdgeInsets padding;
-
-  FatRawButton({
-    Key key,
-    this.child,
-    this.backgroundColor,
-    this.textColor,
-    this.textSize,
-    this.borderRadius,
-    this.onPressed,
-    this.onLongPressed,
-    this.border,
-    this.padding,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: backgroundColor,
-      borderRadius: borderRadius,
-      child: InkWell(
-        onTap: onPressed,
-        onLongPress: onLongPressed,
-        borderRadius: borderRadius,
-        highlightColor: Colors.white.withOpacity(0.1),
-        child: Container(
-          child: DefaultTextStyle(
-            style: TextStyle(
-              color: textColor,
-              fontSize: textSize,
-            ),
-            child: IconTheme(
-              data: IconThemeData(color: textColor),
-              child: child,
-            ),
-          ),
-          padding: padding,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: borderRadius,
-            border: border,
-          ),
-        ),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: borderRadius, side: borderSide),
+      fillColor: backgroundColor,
+      textStyle: TextStyle(color: textColor, fontSize: textSize),
+      child: widget.child,
+      onPressed: widget.onPressed,
+      onLongPress: widget.onLongPressed,
     );
   }
 }
