@@ -17,6 +17,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
 part 'src/application.dart';
+part 'src/chat/chat_message.dart';
+part 'src/chat/extra_toolbar.dart';
+part 'src/chat/toolbar.dart';
+part 'src/chat/single_chat.dart';
+part 'src/chat/single_chat_controller.dart';
+
 part 'src/constants.dart';
 part 'src/data/app_version.dart';
 part 'src/form.dart';
