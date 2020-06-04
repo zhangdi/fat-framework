@@ -31,7 +31,7 @@ class FatWebSocketMessage {
 
   Map<String, dynamic> toMap() {
     return {
-      'action': action,
+      'action': action.name,
       'params': params,
       'data': data,
     };
