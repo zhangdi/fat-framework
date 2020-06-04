@@ -10,6 +10,7 @@ const SERVICE_OUTPUT = 'fat.application.output';
 const SERVICE_LOADING = 'fat.application.loading';
 const SERVICE_UPGRADER = 'fat.application.upgrader';
 const SERVICE_KEYBOARD = 'fat.application.keyboard';
+const SERVICE_DEVICE = 'fat.application.device';
 
 class FatApplication {
   FatServiceLocator _serviceLocator;
@@ -62,6 +63,9 @@ class FatApplication {
 
   /// 键盘管理
   FatKeyboardManager get keyboard => getService(SERVICE_KEYBOARD);
+
+  /// 设备管理
+  FatDeviceManager get device => getService(SERVICE_DEVICE);
 
   bool get isProduct => bool.fromEnvironment("dart.vm.product");
 
@@ -179,6 +183,11 @@ class FatApplication {
         },
       ),
     );
+
+    // Device
+    FatDeviceManager _device = FatDeviceManager();
+    await _device.initialize();
+    await registerService(SERVICE_DEVICE, _device);
   }
 
   /// 注册核心事件
