@@ -33,6 +33,11 @@ class FatWebSocketMessage {
     params = map['params'];
     data = map['data'];
   }
+
+  @override
+  String toString() {
+    return json.encode(toMap());
+  }
 }
 
 /// WebSocket 动作处理程序

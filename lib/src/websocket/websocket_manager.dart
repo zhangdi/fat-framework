@@ -1,6 +1,6 @@
 part of fat_framework;
 
-class FatWebSocket extends FatService{
+class FatWebSocket extends FatService {
   /// WebSocket 地址
   String url;
 
@@ -106,5 +106,10 @@ class FatWebSocket extends FatService{
         handler(message);
       });
     }
+  }
+
+  /// 发送消息
+  send(FatWebSocketMessage message) {
+    _webSocket.add(message.toString());
   }
 }
