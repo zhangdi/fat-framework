@@ -129,7 +129,7 @@ class FatButtonState extends State<FatButton> {
     Color textColor = kFatButtonTextColors[widget.type];
     double textSize = kFatButtonSizes[widget.size];
     BorderRadius borderRadius;
-    BorderSide borderSide;
+    BorderSide borderSide = BorderSide(color: Colors.transparent, width: 0);
     EdgeInsets padding = kFatButtonPaddings[widget.size];
 
     if (widget.shape == FatButtonShape.round) {
