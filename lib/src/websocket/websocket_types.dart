@@ -20,6 +20,15 @@ class FatWebSocketMessage {
   // 数据
   Map<String, dynamic> data;
 
+  /// 创建 WebSocket 消息
+  FatWebSocketMessage.create({
+    @required this.action,
+    this.params,
+    this.data,
+  }) {
+    assert(action != null);
+  }
+
   Map<String, dynamic> toMap() {
     return {
       'action': action,
