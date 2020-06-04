@@ -36,6 +36,7 @@ class FatCell extends StatelessWidget {
   final VoidCallback onLongPressed;
   final Color color;
   final Alignment alignment;
+  final EdgeInsets padding;
 
   FatCell({
     @required this.title,
@@ -47,6 +48,7 @@ class FatCell extends StatelessWidget {
     this.suffix,
     this.color = Colors.white,
     this.alignment = Alignment.centerLeft,
+    this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
   }) : assert(title != null);
 
   @override
@@ -70,7 +72,7 @@ class FatCell extends StatelessWidget {
             minHeight: 48,
           ),
           alignment: Alignment.centerLeft,
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          padding: padding,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
