@@ -210,7 +210,7 @@ class FatApplication {
   }
 
   /// 获取服务
-  getService<T extends FatService>(String name) {
+  T getService<T extends FatService>(String name) {
     return _serviceLocator.getSingleton(name);
   }
 
