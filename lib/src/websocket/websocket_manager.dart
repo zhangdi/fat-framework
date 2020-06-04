@@ -1,6 +1,6 @@
 part of fat_framework;
 
-class FatWebSocket {
+class FatWebSocket extends FatService{
   /// WebSocket 地址
   String url;
 
