@@ -22,7 +22,7 @@ part 'src/chat/extra_toolbar.dart';
 part 'src/chat/toolbar.dart';
 part 'src/chat/single_chat.dart';
 part 'src/chat/single_chat_controller.dart';
-
+part 'src/ui/badge.dart';
 part 'src/constants.dart';
 part 'src/data/app_version.dart';
 part 'src/form.dart';
