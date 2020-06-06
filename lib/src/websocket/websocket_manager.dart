@@ -24,7 +24,9 @@ class FatWebSocket extends FatService {
 
   WebSocket get webSocket => _webSocket;
 
-  Map<FatWebSocketAction, List<FatWebSocketActionHandler>> _actionHandlers = Map();
+  Map<String, List<FatWebSocketActionHandler>> _actionHandlers = Map();
+
+  Map<String, List<FatWebSocketActionHandler>> get actionHandlers => _actionHandlers;
 
   /// 连接 WebSocket 服务器
   connect() {
@@ -85,7 +87,7 @@ class FatWebSocket extends FatService {
   }
 
   /// 添加动作处理程序
-  addActionHandler(FatWebSocketAction action, FatWebSocketActionHandler handler) {
+  addActionHandler(String action, FatWebSocketActionHandler handler) {
     List<FatWebSocketActionHandler> handlers = _actionHandlers[action];
     if (handlers == null) {
       handlers = List<FatWebSocketActionHandler>();
@@ -97,7 +99,7 @@ class FatWebSocket extends FatService {
   }
 
   /// 处理动作
-  _handleAction(FatWebSocketAction action, FatWebSocketMessage message) {
+  _handleAction(String action, FatWebSocketMessage message) {
     List<FatWebSocketActionHandler> handlers = _actionHandlers[action];
     if (handlers == null) {
       print('AppWebSocket does not have any action handlers.');
