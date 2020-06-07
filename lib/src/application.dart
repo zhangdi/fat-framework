@@ -68,6 +68,9 @@ class FatApplication {
   /// 设备管理
   FatDeviceManager get device => getService(SERVICE_DEVICE);
 
+  /// 蜂鸣
+  FatVibrationService get vibration => getService(SERVICE_VIBRATION);
+
   bool get isProduct => bool.fromEnvironment("dart.vm.product");
 
   ThemeData theme;
