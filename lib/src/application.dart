@@ -11,6 +11,7 @@ const SERVICE_LOADING = 'fat.application.loading';
 const SERVICE_UPGRADER = 'fat.application.upgrader';
 const SERVICE_KEYBOARD = 'fat.application.keyboard';
 const SERVICE_DEVICE = 'fat.application.device';
+const SERVICE_VIBRATION = 'fat.application.vibration';
 
 class FatApplication {
   FatServiceLocator _serviceLocator;
@@ -167,6 +168,7 @@ class FatApplication {
     FatKeyboardManager _keyboard = FatKeyboardManager(eventBus: _eventBus);
     await _keyboard.initialize();
     await registerService(SERVICE_KEYBOARD, _keyboard);
+
     // 添加金额键盘
     await _keyboard.addKeyboard(
       inputType: FatMoneyKeyboard.inputType,
@@ -188,6 +190,11 @@ class FatApplication {
     FatDeviceManager _device = FatDeviceManager();
     await _device.initialize();
     await registerService(SERVICE_DEVICE, _device);
+
+    // 蜂鸣器
+    FatVibrationService _vibration = FatVibrationService();
+    await _vibration.initialize();
+    await registerService(SERVICE_VIBRATION, _vibration);
   }
 
   /// 注册核心事件

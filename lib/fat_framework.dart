@@ -18,7 +18,9 @@ import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
+import 'package:vibration/vibration.dart';
 
+part 'src/vibration_service.dart';
 part 'src/application.dart';
 part 'src/audio_player.dart';
 part 'src/chat/chat_message.dart';
