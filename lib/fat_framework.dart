@@ -1,10 +1,11 @@
 library fat_framework;
 
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
-import 'dart:convert';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:device_info/device_info.dart';
 import 'package:dio/dio.dart';
@@ -18,9 +19,8 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
-part 'src/websocket/websocket_manager.dart';
-part 'src/websocket/websocket_types.dart';
 part 'src/application.dart';
+part 'src/audio_player.dart';
 part 'src/chat/chat_message.dart';
 part 'src/chat/extra_toolbar.dart';
 part 'src/chat/single_chat.dart';
@@ -33,6 +33,7 @@ part 'src/form.dart';
 part 'src/form_model.dart';
 part 'src/formatter.dart';
 part 'src/http_service.dart';
+part 'src/initialize.dart';
 part 'src/keyboard.dart';
 part 'src/keyboards/keyboard_container.dart';
 part 'src/keyboards/keyboard_controller.dart';
@@ -70,3 +71,5 @@ part 'src/ui/textarea_field.dart';
 part 'src/ui/uploader.dart';
 part 'src/upgrade_service.dart';
 part 'src/utils/url_util.dart';
+part 'src/websocket/websocket_manager.dart';
+part 'src/websocket/websocket_types.dart';

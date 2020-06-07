@@ -1,6 +1,6 @@
 name: fat_framework
 description: A Fat Framework for Flutter.
-version: 0.0.46
+version: 0.0.47
 author:
 homepage: https://gtihub.com/zhangdi/fat-framework
 
@@ -33,6 +33,8 @@ dependencies:
   dio: ^3.0.9
   # 应用包信息
   package_info: ^0.4.0
+  # 音频播放器
+  audioplayers: ^0.15.1
 
 dev_dependencies:
   flutter_test:
