@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:device_info/device_info.dart';
@@ -20,7 +21,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 import 'package:vibration/vibration.dart';
 
-part 'src/vibration_service.dart';
 part 'src/application.dart';
 part 'src/audio_player.dart';
 part 'src/chat/chat_message.dart';
@@ -73,5 +73,6 @@ part 'src/ui/textarea_field.dart';
 part 'src/ui/uploader.dart';
 part 'src/upgrade_service.dart';
 part 'src/utils/url_util.dart';
+part 'src/vibration_service.dart';
 part 'src/websocket/websocket_manager.dart';
 part 'src/websocket/websocket_types.dart';

@@ -3,20 +3,13 @@ part of fat_framework;
 class FatAudioPlayer extends Initialize {
   AudioPlayer audioPlayer;
 
-  @override
-  initialize() {
-    audioPlayer = new AudioPlayer();
-
-    super.initialize();
-  }
-
   /// 播放本地音频
   playLocal(
     String path, {
     double volume = 1.0,
     bool stayAwake = false,
   }) async {
-    await audioPlayer.play(path, isLocal: true, volume: volume, stayAwake: stayAwake);
+    audioPlayer = await AudioCache().play(path, volume: volume, stayAwake: stayAwake);
   }
 
   /// 播放网络音频
@@ -25,6 +18,8 @@ class FatAudioPlayer extends Initialize {
     double volume = 1.0,
     bool stayAwake = false,
   }) async {
+    audioPlayer = AudioPlayer();
+
     await audioPlayer.play(url, isLocal: false, volume: volume, stayAwake: stayAwake);
   }
 
