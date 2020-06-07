@@ -102,7 +102,7 @@ class FatWebSocket extends FatService {
   _handleAction(String action, FatWebSocketMessage message) {
     List<FatWebSocketActionHandler> handlers = _actionHandlers[action];
     if (handlers == null) {
-      print('AppWebSocket does not have any action handlers.');
+      print('AppWebSocket does not have any handlers for action "${action}".');
     } else {
       handlers.forEach((handler) {
         handler(message);
