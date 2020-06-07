@@ -160,7 +160,7 @@ class FatRouter extends FatService {
     final _arguments = FatRouteArguments(arguments);
 
     if (_beforePush(routeName, _arguments)) {
-      return navigatorKey.currentState?.pushReplacementNamed(routeName, result: result, arguments: arguments);
+      return navigatorKey.currentState?.pushReplacementNamed(routeName, result: result, arguments: _arguments);
     }
   }
 
