@@ -21,4 +21,9 @@ class FatVibrationService extends FatService {
   Future<bool> hasAmplitudeControl() async {
     return await Vibration.hasAmplitudeControl();
   }
+
+  /// 取消
+  cancel() async {
+    await Vibration.cancel();
+  }
 }
