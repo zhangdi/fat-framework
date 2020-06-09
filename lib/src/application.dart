@@ -85,6 +85,14 @@ class FatApplication {
 
   List<ChangeNotifierProvider> providers = [];
 
+  List<Permission> _permissions = [];
+
+  List<Permission> get permissions => _permissions;
+
+  set permissions(List<Permission> permissions) {
+    _permissions = permissions;
+  }
+
   bool _debug = false;
 
   bool get debug => _debug;
@@ -270,6 +278,11 @@ class _FatApplicationWrapperState extends State<FatApplicationWrapper> {
   initialize() async {
     // 初始应用
     await widget.application.initializeState(context);
+
+    if (widget.application.permissions != null && widget.application.permissions.length > 0) {
+      // 请求权限
+      await widget.application.permissions.request();
+    }
   }
 
   @override

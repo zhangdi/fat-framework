@@ -1,6 +1,6 @@
 name: fat_framework
 description: A Fat Framework for Flutter.
-version: 0.0.53
+version: 0.0.54
 author:
 homepage: https://gtihub.com/zhangdi/fat-framework
 
@@ -37,6 +37,8 @@ dependencies:
   audioplayers: ^0.15.1
   # 震动
   vibration: ^1.4.0
+  # 权限管理
+  permission_handler: ^5.0.0
 
 dev_dependencies:
   flutter_test:
