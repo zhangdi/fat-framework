@@ -84,11 +84,13 @@ class FatRouter extends FatService {
     super.initialize();
   }
 
-  ///
-  List<NavigatorObserver> getNavigatorObservers() {
-    return [
-      ApplicationRouterObserver(router: this),
-    ];
+  List<NavigatorObserver> _navigatorObservers = List<NavigatorObserver>();
+
+  List<NavigatorObserver> get navigatorObservers => _navigatorObservers;
+
+  /// 添加导航观察者
+  addNavigatorObserver(NavigatorObserver observer){
+    _navigatorObservers.add(observer);
   }
 
   ///

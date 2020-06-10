@@ -153,6 +153,7 @@ class FatApplication {
     FatRouter _router = FatRouter(navigatorKey: _navigatorKey);
     await _router.initialize();
     await registerService<FatRouter>(SERVICE_ROUTER, _router);
+    _router.addNavigatorObserver(ApplicationRouterObserver(router: _router));
 
     // PreferenceManager
     FatPreferenceManager _prefs = FatPreferenceManager();
@@ -305,7 +306,7 @@ class _FatApplicationWrapperState extends State<FatApplicationWrapper> {
       theme: widget.application.theme,
       onGenerateRoute: widget.application.router.onGenerateRoute,
       navigatorKey: widget.application.navigatorKey,
-      navigatorObservers: widget.application.router.getNavigatorObservers(),
+      navigatorObservers: widget.application.router.navigatorObservers,
       localizationsDelegates: widget.application.localizationsDelegates,
       supportedLocales: widget.application.supportedLocales,
     );
