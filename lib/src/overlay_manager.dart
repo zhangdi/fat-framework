@@ -38,4 +38,14 @@ class FatOverlayManager extends FatService {
       _overlays.removeWhere((key, value) => key == name);
     }
   }
+
+  /// 是否有悬浮窗
+  bool get hasOverlay => _overlays.length > 0;
+
+  /// 移除所有悬浮窗
+  void removeAll() {
+    _overlays.forEach((key, value) {
+      value.remove();
+    });
+  }
 }
