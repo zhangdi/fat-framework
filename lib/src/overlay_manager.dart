@@ -10,6 +10,13 @@ class FatOverlayOptions {
 
   /// 悬浮窗是否可拖动
   bool draggable = false;
+
+  FatOverlayOptions({
+    this.minimize = false,
+    this.miniSize = const Size(90, 120),
+    this.onMinimize,
+    this.draggable = false,
+  });
 }
 
 /// 悬浮窗管理
