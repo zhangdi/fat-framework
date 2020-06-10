@@ -77,3 +77,4 @@ part 'src/utils/url_util.dart';
 part 'src/vibration_service.dart';
 part 'src/websocket/websocket_manager.dart';
 part 'src/websocket/websocket_types.dart';
+part 'src/overlay_manager.dart';

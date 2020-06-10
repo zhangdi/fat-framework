@@ -12,6 +12,7 @@ const SERVICE_UPGRADER = 'fat.application.upgrader';
 const SERVICE_KEYBOARD = 'fat.application.keyboard';
 const SERVICE_DEVICE = 'fat.application.device';
 const SERVICE_VIBRATION = 'fat.application.vibration';
+const SERVICE_OVERLAY = 'fat.application.overlay';
 
 class FatApplication {
   FatServiceLocator _serviceLocator;
@@ -46,30 +47,33 @@ class FatApplication {
 
   GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
 
-  FatRouter get router => getService(SERVICE_ROUTER);
+  FatRouter get router => getService<FatRouter>(SERVICE_ROUTER);
 
-  FatPreferenceManager get preferences => getService(SERVICE_PREFERENCES);
+  FatPreferenceManager get preferences => getService<FatPreferenceManager>(SERVICE_PREFERENCES);
 
-  FatToastManager get toast => getService(SERVICE_TOAST);
+  FatToastManager get toast => getService<FatToastManager>(SERVICE_TOAST);
 
-  FatHttpService get http => getService(SERVICE_HTTP);
+  FatHttpService get http => getService<FatHttpService>(SERVICE_HTTP);
 
-  FatOutputService get output => getService(SERVICE_OUTPUT);
+  FatOutputService get output => getService<FatOutputService>(SERVICE_OUTPUT);
 
   /// Loading
-  FatLoadingService get loading => getService(SERVICE_LOADING);
+  FatLoadingService get loading => getService<FatLoadingService>(SERVICE_LOADING);
 
   /// 升级管理
-  FatUpgradeService get upgrader => getService(SERVICE_UPGRADER);
+  FatUpgradeService get upgrader => getService<FatUpgradeService>(SERVICE_UPGRADER);
 
   /// 键盘管理
-  FatKeyboardManager get keyboard => getService(SERVICE_KEYBOARD);
+  FatKeyboardManager get keyboard => getService<FatKeyboardManager>(SERVICE_KEYBOARD);
 
   /// 设备管理
-  FatDeviceManager get device => getService(SERVICE_DEVICE);
+  FatDeviceManager get device => getService<FatDeviceManager>(SERVICE_DEVICE);
 
   /// 蜂鸣
-  FatVibrationService get vibration => getService(SERVICE_VIBRATION);
+  FatVibrationService get vibration => getService<FatVibrationService>(SERVICE_VIBRATION);
+
+  /// 悬浮窗
+  FatOverlayManager get overlay => getService<FatOverlayManager>(SERVICE_OVERLAY);
 
   bool get isProduct => bool.fromEnvironment("dart.vm.product");
 
@@ -143,42 +147,42 @@ class FatApplication {
     // Output
     FatOutputService _output = FatOutputService();
     await _output.initialize();
-    await registerService(SERVICE_OUTPUT, _output);
+    await registerService<FatOutputService>(SERVICE_OUTPUT, _output);
 
     // 路由服务
     FatRouter _router = FatRouter(navigatorKey: _navigatorKey);
     await _router.initialize();
-    await registerService(SERVICE_ROUTER, _router);
+    await registerService<FatRouter>(SERVICE_ROUTER, _router);
 
     // PreferenceManager
     FatPreferenceManager _prefs = FatPreferenceManager();
     await _prefs.initialize();
-    await registerService(SERVICE_PREFERENCES, _prefs);
+    await registerService<FatPreferenceManager>(SERVICE_PREFERENCES, _prefs);
 
     // Toast
     FatToastManager _toast = FatToastManager();
     await _toast.initialize();
-    await registerService(SERVICE_TOAST, _toast);
+    await registerService<FatToastManager>(SERVICE_TOAST, _toast);
 
     // HTTP
     FatHttpService _http = FatHttpService(output: _output);
     await _http.initialize();
-    await registerService(SERVICE_HTTP, _http);
+    await registerService<FatHttpService>(SERVICE_HTTP, _http);
 
     // Loading
     FatLoadingService _loading = FatLoadingService();
     await _loading.initialize();
-    await registerService(SERVICE_LOADING, _loading);
+    await registerService<FatLoadingService>(SERVICE_LOADING, _loading);
 
     // Upgrader
     FatUpgradeService _upgrader = FatUpgradeService();
     await _upgrader.initialize();
-    await registerService(SERVICE_UPGRADER, _upgrader);
+    await registerService<FatUpgradeService>(SERVICE_UPGRADER, _upgrader);
 
     // Keyboard
     FatKeyboardManager _keyboard = FatKeyboardManager(eventBus: _eventBus);
     await _keyboard.initialize();
-    await registerService(SERVICE_KEYBOARD, _keyboard);
+    await registerService<FatKeyboardManager>(SERVICE_KEYBOARD, _keyboard);
 
     // 添加金额键盘
     await _keyboard.addKeyboard(
@@ -200,12 +204,17 @@ class FatApplication {
     // Device
     FatDeviceManager _device = FatDeviceManager();
     await _device.initialize();
-    await registerService(SERVICE_DEVICE, _device);
+    await registerService<FatDeviceManager>(SERVICE_DEVICE, _device);
 
     // 蜂鸣器
     FatVibrationService _vibration = FatVibrationService();
     await _vibration.initialize();
-    await registerService(SERVICE_VIBRATION, _vibration);
+    await registerService<FatVibrationService>(SERVICE_VIBRATION, _vibration);
+
+    // 悬浮窗
+    FatOverlayManager _overlay = FatOverlayManager();
+    await _overlay.initialize();
+    await registerService<FatOverlayManager>(SERVICE_OVERLAY, _overlay);
   }
 
   /// 注册核心事件
