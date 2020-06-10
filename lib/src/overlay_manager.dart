@@ -6,7 +6,8 @@ class FatOverlayManager extends FatService {
 
   Map<String, OverlayEntry> _overlays = Map();
 
-  show(
+  /// 显示
+  void show(
     BuildContext context,
     Widget child, {
     String name = OVERLAY_NAME,
@@ -21,6 +22,11 @@ class FatOverlayManager extends FatService {
     _overlays[name] = entry;
 
     Overlay.of(context).insert(entry);
+  }
+
+  /// 判断 Overlay 是否存在
+  bool isShown(String name) {
+    return _overlays.containsKey(name);
   }
 
   /// 移除悬浮窗
