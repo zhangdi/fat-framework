@@ -3,6 +3,7 @@ library fat_framework;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:audioplayers/audio_cache.dart';
@@ -21,7 +22,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 import 'package:vibration/vibration.dart';
 import 'package:permission_handler/permission_handler.dart';
-
 part 'src/application.dart';
 part 'src/audio_player.dart';
 part 'src/chat/chat_message.dart';
