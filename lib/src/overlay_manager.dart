@@ -86,6 +86,11 @@ class FatOverlayManager extends FatService {
     _overlayOptions[name] = options;
     _overlayKeys[name].currentState?.setOptions(options);
   }
+
+  ///
+  GlobalKey<_FatOverlayWrapperState> getKey(String name) {
+    return _overlayKeys[name];
+  }
 }
 
 class _FatOverlayWrapper extends StatefulWidget {
