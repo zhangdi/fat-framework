@@ -30,7 +30,7 @@ class FatTextareaField extends StatelessWidget {
 
     if (_label != null) {
       children.add(_label);
-      children.add(Divider());
+      children.add(FatSpace(width: 16,));
     }
 
     final _textarea = _buildTextarea(context);

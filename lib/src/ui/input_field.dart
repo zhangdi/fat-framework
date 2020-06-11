@@ -39,7 +39,9 @@ class FatInputField extends StatelessWidget {
     final _label = _buildLabel(context);
     if (_label != null) {
       children.add(_label);
-      children.add(Divider());
+      children.add(FatSpace(
+        width: 16,
+      ));
     }
 
     final _input = _buildInput(context);
