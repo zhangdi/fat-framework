@@ -64,7 +64,7 @@ class FatStepperState<T extends num> extends State<FatStepper> {
             padding: EdgeInsets.symmetric(horizontal: 8),
             color: Colors.grey[100],
             child: Text(
-              '${_value ?? ''}',
+              '${value ?? ''}',
               style: TextStyle(fontSize: 16, color: Colors.black.withOpacity(0.8)),
             ),
           ),
@@ -87,31 +87,41 @@ class FatStepperState<T extends num> extends State<FatStepper> {
 
   /// 加上
   _add() {
-    final oldValue = _value;
+    final oldValue = value;
     final newValue = oldValue + widget.step;
 
     setState(() {
       if (widget.max != null && newValue > widget.max) {
-        _value = oldValue;
+        value = oldValue;
       } else {
-        _value = newValue;
+        value = newValue;
       }
     });
   }
 
   /// 减去
   _sub() {
-    final oldValue = _value;
+    final oldValue = value;
     final newValue = oldValue - widget.step;
 
     setState(() {
       if (widget.min != null && newValue < widget.min) {
-        _value = oldValue;
+        value = oldValue;
       } else {
-        _value = newValue;
+        value = newValue;
       }
     });
   }
 
   T get value => _value;
+
+  set value(T value) {
+    setState(() {
+      _value = value;
+    });
+
+    if (widget.onChanged != null) {
+      widget.onChanged(_value);
+    }
+  }
 }
