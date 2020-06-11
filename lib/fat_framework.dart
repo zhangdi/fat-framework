@@ -23,6 +23,7 @@ import 'package:vibration/vibration.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 part 'src/application.dart';
+part 'src/ui/stepper.dart';
 part 'src/audio_player.dart';
 part 'src/chat/chat_message.dart';
 part 'src/chat/extra_toolbar.dart';
