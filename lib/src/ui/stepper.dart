@@ -1,13 +1,13 @@
 part of fat_framework;
 
-class FatStepper<T extends num> extends StatefulWidget {
-  final T initialValue;
-  final ValueChanged<T> onChanged;
-  final T step;
-  final T min;
-  final T max;
+class FatIntStepper extends StatefulWidget {
+  final int initialValue;
+  final ValueChanged<int> onChanged;
+  final int step;
+  final int min;
+  final int max;
 
-  FatStepper({
+  FatIntStepper({
     Key key,
     this.initialValue,
     this.onChanged,
@@ -18,11 +18,11 @@ class FatStepper<T extends num> extends StatefulWidget {
         super(key: key);
 
   @override
-  FatStepperState<T> createState() => FatStepperState<T>();
+  FatIntStepperState createState() => FatIntStepperState();
 }
 
-class FatStepperState<T extends num> extends State<FatStepper> {
-  T _value;
+class FatIntStepperState extends State<FatIntStepper> {
+  int _value;
 
   @override
   void initState() {
@@ -113,9 +113,9 @@ class FatStepperState<T extends num> extends State<FatStepper> {
     });
   }
 
-  T get value => _value;
+  int get value => _value;
 
-  set value(T value) {
+  set value(int value) {
     setState(() {
       _value = value;
     });
