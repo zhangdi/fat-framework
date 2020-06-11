@@ -98,7 +98,7 @@ class FatReadonlyField<T> extends StatelessWidget {
     return Container(
       width: kFatFieldLabelWidth,
       child: DefaultTextStyle(
-        style: theme.textTheme.subtitle1.copyWith(color: kFatLabelColor),
+        style: theme.textTheme.bodyText2.copyWith(color: kFatLabelColor),
         child: label,
       ),
     );
