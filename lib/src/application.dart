@@ -13,6 +13,7 @@ const SERVICE_KEYBOARD = 'fat.application.keyboard';
 const SERVICE_DEVICE = 'fat.application.device';
 const SERVICE_VIBRATION = 'fat.application.vibration';
 const SERVICE_OVERLAY = 'fat.application.overlay';
+const SERVICE_NOTIFICATION = 'fat.application.notification';
 
 class FatApplication {
   FatServiceLocator _serviceLocator;
@@ -74,6 +75,9 @@ class FatApplication {
 
   /// 悬浮窗
   FatOverlayManager get overlay => getService<FatOverlayManager>(SERVICE_OVERLAY);
+
+  /// 通知
+  FatNotificationManager get notification => getService<FatNotificationManager>(SERVICE_NOTIFICATION);
 
   bool get isProduct => bool.fromEnvironment("dart.vm.product");
 
@@ -216,6 +220,32 @@ class FatApplication {
     FatOverlayManager _overlay = FatOverlayManager();
     await _overlay.initialize();
     await registerService<FatOverlayManager>(SERVICE_OVERLAY, _overlay);
+
+    // 通知
+    FatNotificationManager _notification = FatNotificationManager();
+    await registerService<FatNotificationManager>(SERVICE_NOTIFICATION, _notification);
+  }
+
+  /// 初始化服务
+  initializeServices() async {
+    if (_onBeforeInitializeServices != null) {
+      await _onBeforeInitializeServices();
+    }
+
+    for (final name in _serviceLocator._singletons.keys) {
+      final service = _serviceLocator._singletons[name];
+
+      if (!service.initialized) {
+        await service.initialize();
+      }
+    }
+  }
+
+  VoidCallback _onBeforeInitializeServices;
+
+  ///
+  beforeInitializeServices(VoidCallback callback) {
+    _onBeforeInitializeServices = callback;
   }
 
   /// 注册核心事件
