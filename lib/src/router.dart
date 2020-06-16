@@ -50,6 +50,34 @@ class FatRouteArguments {
     }
   }
 
+  ///
+  int getInt(String name, {int defaultValue}) {
+    if (_arguments.containsKey(name)) {
+      final value = _arguments[name];
+      if (value is int) {
+        return value;
+      } else {
+        return int.tryParse('${value}');
+      }
+    } else {
+      return defaultValue;
+    }
+  }
+
+  ///
+  String getString(String name, {String defaultValue}) {
+    if (_arguments.containsKey(name)) {
+      final value = _arguments[name];
+      if (value is String) {
+        return value;
+      } else {
+        return value.toString();
+      }
+    } else {
+      return defaultValue;
+    }
+  }
+
   @override
   String toString() {
     return _arguments.toString();
@@ -89,7 +117,7 @@ class FatRouter extends FatService {
   List<NavigatorObserver> get navigatorObservers => _navigatorObservers;
 
   /// 添加导航观察者
-  addNavigatorObserver(NavigatorObserver observer){
+  addNavigatorObserver(NavigatorObserver observer) {
     _navigatorObservers.add(observer);
   }
 
