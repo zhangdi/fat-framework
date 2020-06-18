@@ -21,7 +21,7 @@ class FatApplication {
   GlobalKey<NavigatorState> _navigatorKey;
   GlobalKey<FatKeyboardContainerState> _keyboardContainerKey = GlobalKey();
 
-  BuildContext _currentContext;
+  BuildContext _applicationContext;
 
   FatApplication._();
 
@@ -36,11 +36,7 @@ class FatApplication {
     return _instance;
   }
 
-  BuildContext get currentContext => _currentContext;
-
-  set currentContext(BuildContext value) {
-    _currentContext = value;
-  }
+  BuildContext get applicationContext => _applicationContext;
 
   PackageInfo _packageInfo;
 
@@ -127,7 +123,7 @@ class FatApplication {
 
   /// State 初始化
   initializeState(BuildContext context) async {
-    _currentContext = context;
+    _applicationContext = context;
 
     if (_stateInitializeCallback != null) {
       await _stateInitializeCallback(this, context);

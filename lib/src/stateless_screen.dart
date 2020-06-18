@@ -5,8 +5,6 @@ abstract class FatStatelessScreen extends StatelessWidget implements FatScreen {
 
   @override
   Widget build(BuildContext context) {
-    application.currentContext = context;
-
     return buildScreen(context);
   }
 }
