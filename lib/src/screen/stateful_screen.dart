@@ -23,8 +23,17 @@ abstract class FatScreenState<T extends FatStatefulScreen> extends State<T> impl
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      application.contextManager.push(context);
+
       onPostFirstFrameCallback(timeStamp);
     });
+  }
+
+  @override
+  void dispose() {
+    application.contextManager.pop(context);
+
+    super.dispose();
   }
 
   ///

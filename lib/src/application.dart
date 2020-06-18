@@ -14,14 +14,13 @@ const SERVICE_DEVICE = 'fat.application.device';
 const SERVICE_VIBRATION = 'fat.application.vibration';
 const SERVICE_OVERLAY = 'fat.application.overlay';
 const SERVICE_NOTIFICATION = 'fat.application.notification';
+const SERVICE_CONTEXT_MANAGER = 'fat.application.contextManager';
 
 class FatApplication {
   FatServiceLocator _serviceLocator;
   EventBus _eventBus;
   GlobalKey<NavigatorState> _navigatorKey;
   GlobalKey<FatKeyboardContainerState> _keyboardContainerKey = GlobalKey();
-
-  BuildContext _applicationContext;
 
   FatApplication._();
 
@@ -35,8 +34,6 @@ class FatApplication {
     }
     return _instance;
   }
-
-  BuildContext get applicationContext => _applicationContext;
 
   PackageInfo _packageInfo;
 
@@ -74,6 +71,9 @@ class FatApplication {
 
   /// 通知
   FatNotificationManager get notification => getService<FatNotificationManager>(SERVICE_NOTIFICATION);
+
+  /// ContextManager
+  FatContextManager get contextManager => getService<FatContextManager>(SERVICE_CONTEXT_MANAGER);
 
   bool get isProduct => bool.fromEnvironment("dart.vm.product");
 
@@ -123,8 +123,6 @@ class FatApplication {
 
   /// State 初始化
   initializeState(BuildContext context) async {
-    _applicationContext = context;
-
     if (_stateInitializeCallback != null) {
       await _stateInitializeCallback(this, context);
     }
@@ -220,6 +218,11 @@ class FatApplication {
     // 通知
     FatNotificationManager _notification = FatNotificationManager();
     await registerService<FatNotificationManager>(SERVICE_NOTIFICATION, _notification);
+
+    // ContextManager
+    FatContextManager _contextManager = FatContextManager();
+    await _contextManager.initialize();
+    await registerService<FatContextManager>(SERVICE_CONTEXT_MANAGER, _contextManager);
   }
 
   /// 初始化服务
