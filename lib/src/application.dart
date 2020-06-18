@@ -217,34 +217,13 @@ class FatApplication {
 
     // 通知
     FatNotificationManager _notification = FatNotificationManager();
+    await _notification.initialize();
     await registerService<FatNotificationManager>(SERVICE_NOTIFICATION, _notification);
 
     // ContextManager
     FatContextManager _contextManager = FatContextManager();
     await _contextManager.initialize();
     await registerService<FatContextManager>(SERVICE_CONTEXT_MANAGER, _contextManager);
-  }
-
-  /// 初始化服务
-  initializeServices() async {
-    if (_onBeforeInitializeServices != null) {
-      await _onBeforeInitializeServices();
-    }
-
-    for (final name in _serviceLocator._singletons.keys) {
-      final service = _serviceLocator._singletons[name];
-
-      if (!service.initialized) {
-        await service.initialize();
-      }
-    }
-  }
-
-  VoidCallback _onBeforeInitializeServices;
-
-  ///
-  beforeInitializeServices(VoidCallback callback) {
-    _onBeforeInitializeServices = callback;
   }
 
   /// 注册核心事件
