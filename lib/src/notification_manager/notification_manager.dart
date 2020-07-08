@@ -21,11 +21,27 @@ class FatNotificationManager extends FatService {
   /// 设置点击通知回调，必须在 [initialize] 之前调用
   set onSelectNotification(SelectNotificationCallback onSelectNotification) {
     _onSelectNotification = onSelectNotification;
+
+    // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
+    var initializationSettingsAndroid = AndroidInitializationSettings(_defaultIcon);
+    var initializationSettingsIOS = IOSInitializationSettings();
+
+    var initializationSettings = InitializationSettings(initializationSettingsAndroid, initializationSettingsIOS);
+
+    _notificationPlugin.initialize(initializationSettings, onSelectNotification: _onSelectNotification);
   }
 
   /// 设置通知图标，必须在 [initialize] 之前调用
   set defaultIcon(String defaultIcon){
     _defaultIcon = defaultIcon;
+
+    // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
+    var initializationSettingsAndroid = AndroidInitializationSettings(_defaultIcon);
+    var initializationSettingsIOS = IOSInitializationSettings();
+
+    var initializationSettings = InitializationSettings(initializationSettingsAndroid, initializationSettingsIOS);
+
+    _notificationPlugin.initialize(initializationSettings, onSelectNotification: _onSelectNotification);
   }
 
   void show(FatNotification notification) async {
